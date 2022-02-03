@@ -28,7 +28,7 @@ export default function RegistrationPage(){
         setIsEnabled(false);
 
         if(e.target.password.value !== e.target.confirm_password.value){
-            alert("Confira se os dados foram informados corretamente")
+            alert("Confirme sua senha para prosseguir")
             setIsEnabled(true)
             return
         }
