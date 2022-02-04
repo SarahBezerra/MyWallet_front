@@ -118,12 +118,16 @@ export const Options = styled.div`
             font-size: 26px;
         }
 
-        p{
+        p {
             font-weight: bold;
             font-size: 17px;
             line-height: 20px;
             color: #FFFFFF;
             margin-top: 38px;
         }
+    }
+
+    a {
+        text-decoration: none;
     }
 `

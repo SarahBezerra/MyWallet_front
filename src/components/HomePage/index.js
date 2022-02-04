@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import { Header, Container, Options } from './style'
 import Registry from './Registry';
@@ -64,8 +65,8 @@ export default function HomePage({ token }){
                 </div>
         </Container>
         <Options>
-            <div><ion-icon name="add-circle-outline"></ion-icon><p>Nova entrada</p></div>
-            <div><ion-icon name="add-circle-outline"></ion-icon><p>Nova saída</p></div>
+            <Link to="/registrar/entrada"><div><ion-icon name="add-circle-outline"></ion-icon><p>Nova entrada</p></div></Link>
+            <Link to="/registrar/saida"><div><ion-icon name="add-circle-outline"></ion-icon><p>Nova saída</p></div></Link>
         </Options>
         </>
     )
