@@ -7,10 +7,9 @@ import { StyledAppName } from "../../style/StyledAppName"
 import { StyledForm } from '../../style/StyledForm'
 import { StyledLink } from "../../style/StyledLink"
 
-export default function LoginPage(){
+export default function LoginPage({ setToken }){
 
     const navigate = useNavigate();
-    const [token, setToken] = useState("");
     const [isEnabled, setIsEnabled] = useState(true);
     const [loginData, setLoginData] = useState({
         email: "",

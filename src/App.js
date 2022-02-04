@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 import './style/reset.css';
 import './style/style.css';
@@ -10,12 +11,14 @@ import CashEntryPage from './components/CashEntryPage/index';
 import CashOutPage from './components/CashOutPage/index';
 
 export default function App(){
+    const [token, setToken] = useState("");
+
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<LoginPage/>} />
+                <Route path="/" element={<LoginPage setToken={setToken} />} />
                 <Route path="/cadastro" element={<RegistrationPage />} />
-                <Route path="/home" element={<HomePage/>} />
+                <Route path="/home" element={<HomePage token={token} />} />
                 <Route path="/entrada" element={<CashEntryPage/>} />
                 <Route path="/saida" element={<CashOutPage/>} />
             </Routes>
