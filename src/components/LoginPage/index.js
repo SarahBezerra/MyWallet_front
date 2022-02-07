@@ -32,7 +32,7 @@ export default function LoginPage({ setToken }){
         })
         promise.catch(error => {
             setIsEnabled(true)
-            console.log(error.response.data)
+            alert(error.response.data)
         })
     }
       

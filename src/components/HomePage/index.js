@@ -39,34 +39,34 @@ export default function HomePage({ token }){
         <>
         <Header>
             <h1>Olá, {name}</h1>
-            <ion-icon name="exit-outline"></ion-icon>
+            <button><ion-icon name="exit-outline"></ion-icon></button>
         </Header>
-        <Container>
-            <div className="registries">
+        <Container saldo={saldo}>
+            <div className="registries" registries={registries.length}>
                 {(registries.length === 0) ?
-                    <p>Não há registros de entrada ou saída</p>
+                    <p>Não há registros de<br/>entrada ou saída</p>
                     :
                     <ul>
                         {registries?.map(registry => 
-                            <Registry key={registry._id} {...registry}/>
+                            <Registry key={registry._id} {...registry} setRegistries={setRegistries} />
                         )}
                     </ul>
                 }
             </div>
-                <div className="saldo">
-                    {(registries.length === 0) ? 
-                        <p></p>
-                        :
-                        <>
-                        <p>SALDO</p>
-                        <p className="value">R$ {saldo}</p>
-                        </>
-                    }
-                </div>
+            <div className="saldo">
+                {(registries.length === 0) ? 
+                    <p></p>
+                    :
+                    <>
+                    <p>SALDO</p>
+                    <p className="value">R$ {saldo}</p>
+                    </>
+                }
+            </div>
         </Container>
         <Options>
-            <Link to="/registrar/entrada"><div><ion-icon name="add-circle-outline"></ion-icon><p>Nova entrada</p></div></Link>
-            <Link to="/registrar/saida"><div><ion-icon name="add-circle-outline"></ion-icon><p>Nova saída</p></div></Link>
+            <Link to="/registrar/entrada"><div><ion-icon name="add-circle-outline"></ion-icon><p>Nova<br/>entrada</p></div></Link>
+            <Link to="/registrar/saida"><div><ion-icon name="remove-circle-outline"></ion-icon><p>Nova<br/>saída</p></div></Link>
         </Options>
         </>
     )

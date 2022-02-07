@@ -29,6 +29,10 @@ export default function Register({ token }){
     function handleLogin(e){
         e.preventDefault();
         setIsEnabled(false);
+
+        registrationData.value = parseFloat(registrationData.value).toFixed(2);
+        console.log(registrationData.value)
+
         const promise = axios.post(`http://localhost:5000/registrar/${tipo_de_registro}`, registrationData, config);
         
         promise.then(response => {
@@ -38,21 +42,21 @@ export default function Register({ token }){
         })
         promise.catch(error => {
             setIsEnabled(true)
-            console.log(error.response.data)
+            alert(error.response.data)
         })
     }
 
     return(
         <>
         <Header>
-            <h1>Nova entrada|saída</h1>
+            <h1>Nova {tipo_de_registro}</h1>
         </Header>
         <Fixed>
         <StyledForm onSubmit={handleLogin} enabled={isEnabled}>
             <fieldset disabled={!isEnabled}>
-                <input type="value" placeholder="Valor" name="value" value={registrationData.value} onChange={handleInputChange} required></input>
-                <input type="description" placeholder="Descrição" name="description" value={registrationData.description} onChange={handleInputChange} required></input>
-                <button type="submit">Salvar entrada|saída</button>
+                <input type="number" placeholder="Valor" name="value" value={registrationData.value} onChange={handleInputChange} required></input>
+                <input type="description" placeholder="Descrição (max 13 caracteres)" name="description" value={registrationData.description} onChange={handleInputChange} required></input>
+                <button type="submit">Salvar {tipo_de_registro}</button>
             </fieldset>
         </StyledForm>
         </Fixed>

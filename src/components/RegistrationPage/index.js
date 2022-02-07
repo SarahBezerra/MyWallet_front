@@ -58,7 +58,7 @@ export default function RegistrationPage(){
             <fieldset disabled={!isEnabled}>
                 <input type="name" placeholder="Nome" name="name" value={registrationData.name} onChange={handleInputChange} required></input>
                 <input type="email" placeholder="E-mail" name="email" value={registrationData.email} onChange={handleInputChange} required></input>
-                <input type="password" placeholder="Senha" name="password" value={registrationData.password} onChange={handleInputChange} required></input>
+                <input type="password" placeholder="Senha (mín 4 caracters)" name="password" value={registrationData.password} onChange={handleInputChange} required></input>
                 <input type="password" placeholder="Confirme a senha" name="confirm_password" value={registrationData.confirm_password} onChange={handleInputChange} required></input>
                 <button type="submit">{isEnabled ? "Cadastrar" : <ThreeDots type="ThreeDots" color="#FFF" height={13} width={38} />}</button>
             </fieldset>

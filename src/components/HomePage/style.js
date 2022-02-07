@@ -24,6 +24,12 @@ export const Header = styled.div`
         font-size: 32px;
         color: #FFFFFF;
     }
+
+    button {
+        background-color: #925CBD;
+        border: none;
+        padding: 0;
+    }
 `
 
 export const Container = styled.div`
@@ -39,15 +45,23 @@ export const Container = styled.div`
         height: 100%;
         border-radius: 5px 5px 0 0;
         background-color: #FFFFFF;
-        padding: 8px 8px 5px 0;
+        padding: 8px 5px 5px 0;
 
         overflow: scroll;
-    }
+
+        p {
+            text-align: center;
+            margin-top: 60%;
+            line-height: 22px;
+            font-size: 18px;
+            color: gray;
+        }
+   }
 
     .saldo {
         height: 40px;
         width: 100%;
-        padding: 0 19px 0 11px;
+        padding: 0 17px 0 12px;
 
         display: flex;
         justify-content: space-between;
@@ -55,6 +69,7 @@ export const Container = styled.div`
 
         background-color: #FFFFFF;
         border-radius: 0 0 5px 5px ;
+        border-top: 1px dashed #925CBD;
         font-size: 17px;
 
         p {
@@ -63,12 +78,13 @@ export const Container = styled.div`
 
         p.value {
             font-weight: 400;
+            color: ${props => (props.saldo < 0) ? "#C70000" : "#03AC00"};
         }
     }
 `
 export const Transition = styled.li`
-    height: 35px;
-    padding: 0 11px;
+    height: 38px;
+    padding: 0 7px 0 12px;
 
     display: flex;
     align-items: center;
@@ -79,6 +95,13 @@ export const Transition = styled.li`
 
     span {
         display: flex;
+
+        button {
+            color: gray;
+            margin: 0 5px;
+            border: none;
+            background-color: #FFFFFF;
+        }
     }
 
     .date {
@@ -121,9 +144,9 @@ export const Options = styled.div`
         p {
             font-weight: bold;
             font-size: 17px;
-            line-height: 20px;
+            line-height: 22px;
             color: #FFFFFF;
-            margin-top: 38px;
+            margin-top: 18px;
         }
     }
 
