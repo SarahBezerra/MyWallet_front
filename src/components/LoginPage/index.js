@@ -7,7 +7,7 @@ import { StyledAppName } from "../../style/StyledAppName"
 import { StyledForm } from '../../style/StyledForm'
 import { StyledLink } from "../../style/StyledLink"
 
-export default function LoginPage({ setToken }){
+export default function LoginPage(){
 
     const navigate = useNavigate();
     const [isEnabled, setIsEnabled] = useState(true);
@@ -19,15 +19,19 @@ export default function LoginPage({ setToken }){
     function handleInputChange(e){
     setLoginData({...loginData, [e.target.name]: e.target.value})
     }
+
+    function setAndPersistToken(token) {
+		localStorage.setItem("token", token);
+	}
     
     function handleLogin(e){
         e.preventDefault();
         setIsEnabled(false);
-        const promise = axios.post("http://localhost:5000/login", loginData);
+        const promise = axios.post("http://localhost:5000/sign-in", loginData);
         
         promise.then(response => {
             setIsEnabled(true)
-            setToken(response.data)
+            setAndPersistToken(response.data)
             navigate("/home")
         })
         promise.catch(error => {

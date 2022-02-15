@@ -3,21 +3,24 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import { Header, Container, Options } from './style'
 import Registry from './Registry';
+import { useNavigate } from 'react-router';
 
-export default function HomePage({ token }){
+export default function HomePage(){
 
+    const tokenOnLocalStorage = localStorage.getItem("token");
     const [ registries, setRegistries ] = useState([]);   
     const [ name, setName ] = useState("");
     const [ saldo, setSaldo ] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const config = {
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${tokenOnLocalStorage}`
             }
         }
 
-        const promise = axios.get("http://localhost:5000/extrato", config);
+        const promise = axios.get("http://localhost:5000/statement", config);
 
         promise.then(response => {
             setRegistries(response.data.registries)
@@ -29,7 +32,12 @@ export default function HomePage({ token }){
             console.log(error.response.data)
         })
 
-    }, []);
+    }, [tokenOnLocalStorage]);
+
+    function logout() {
+        localStorage.removeItem('token');
+        navigate("/")
+    }
 
     if(!registries){
         return("carregando");
@@ -39,7 +47,7 @@ export default function HomePage({ token }){
         <>
         <Header>
             <h1>Olá, {name}</h1>
-            <button><ion-icon name="exit-outline"></ion-icon></button>
+            <button onClick={logout}><ion-icon name="exit-outline"></ion-icon></button>
         </Header>
         <Container saldo={saldo}>
             <div className="registries" registries={registries.length}>
@@ -48,7 +56,7 @@ export default function HomePage({ token }){
                     :
                     <ul>
                         {registries?.map(registry => 
-                            <Registry key={registry._id} {...registry} setRegistries={setRegistries} />
+                            <Registry key={registry._id} {...registry} setRegistries={setRegistries} registries={registries}/>
                         )}
                     </ul>
                 }

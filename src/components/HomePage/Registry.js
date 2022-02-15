@@ -1,20 +1,17 @@
 import { React } from "react";
-import { useNavigate } from "react-router";
 import axios from "axios";
 import { Transition } from "./style";
 
-export default function Registry({ type, description, value, date, _id, setRegistries }){
-
-    const navigate = useNavigate();
+export default function Registry({ type, description, value, date, _id, setRegistries, registries }){
 
     function deleteRegistry(){
         const confirmDeletion = window.confirm(`Realmente deseja deletar o registro?\n${date} : R$${value}`);
 
         if(confirmDeletion){
-            const promise = axios.delete(`http://localhost:5000/deleteRegistry/${_id}`);
+            const promise = axios.delete(`http://localhost:5000/delete-registry/${_id}`);
 
             promise.then(response => {
-                setRegistries(response.data)
+                setRegistries(...registries)
             })
 
             promise.catch(error => {

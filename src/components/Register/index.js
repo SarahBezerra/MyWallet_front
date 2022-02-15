@@ -6,19 +6,19 @@ import { useNavigate } from "react-router"
 import { Header, Fixed } from "./style";
 import { StyledForm } from "../../style/StyledForm";
 
-export default function Register({ token }){
+export default function Register(){
 
     const navigate = useNavigate();
-    const { tipo_de_registro } = useParams();
+    const tokenOnLocalStorage = localStorage.getItem("token");
+    const { registryType } = useParams();
     const [isEnabled, setIsEnabled] = useState(true);
     const [ registrationData, setRegistrationData ] = useState({
         value: "",
         description: "",
-        type: tipo_de_registro
     });
     const config = {
         headers: {
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${tokenOnLocalStorage}`
         }
     }
 
@@ -31,13 +31,11 @@ export default function Register({ token }){
         setIsEnabled(false);
 
         registrationData.value = parseFloat(registrationData.value).toFixed(2);
-        console.log(registrationData.value)
 
-        const promise = axios.post(`http://localhost:5000/registrar/${tipo_de_registro}`, registrationData, config);
+        const promise = axios.post(`http://localhost:5000/register/${registryType}`, registrationData, config);
         
         promise.then(response => {
             setIsEnabled(true)
-            console.log(response.data)
             navigate("/home")
         })
         promise.catch(error => {
@@ -49,14 +47,14 @@ export default function Register({ token }){
     return(
         <>
         <Header>
-            <h1>Nova {tipo_de_registro}</h1>
+            <h1>Nova {registryType}</h1>
         </Header>
         <Fixed>
         <StyledForm onSubmit={handleLogin} enabled={isEnabled}>
             <fieldset disabled={!isEnabled}>
                 <input type="number" placeholder="Valor" name="value" value={registrationData.value} onChange={handleInputChange} required></input>
                 <input type="description" placeholder="Descrição (max 13 caracteres)" name="description" value={registrationData.description} onChange={handleInputChange} required></input>
-                <button type="submit">Salvar {tipo_de_registro}</button>
+                <button type="submit">Salvar {registryType}</button>
             </fieldset>
         </StyledForm>
         </Fixed>

@@ -33,7 +33,7 @@ export default function RegistrationPage(){
             return
         }
 
-        const promise = axios.post("http://localhost:5000/cadastro", {
+        const promise = axios.post("http://localhost:5000/sign-up", {
             name: registrationData.name,
             email: registrationData.email,
             password: registrationData.password
