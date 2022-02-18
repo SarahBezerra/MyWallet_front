@@ -8,7 +8,7 @@ export default function Registry({ type, description, value, date, _id, setRegis
         const confirmDeletion = window.confirm(`Realmente deseja deletar o registro?\n${date} : R$${value}`);
 
         if(confirmDeletion){
-            const promise = axios.delete(`http://localhost:5000/delete-registry/${_id}`);
+            const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/delete-registry/${_id}`);
 
             promise.then(response => {
                 setRegistries(...registries)

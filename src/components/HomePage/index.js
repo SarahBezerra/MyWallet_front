@@ -20,7 +20,7 @@ export default function HomePage(){
             }
         }
 
-        const promise = axios.get("http://localhost:5000/statement", config);
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/statement`, config);
 
         promise.then(response => {
             setRegistries(response.data.registries)

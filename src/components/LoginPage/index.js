@@ -27,7 +27,7 @@ export default function LoginPage(){
     function handleLogin(e){
         e.preventDefault();
         setIsEnabled(false);
-        const promise = axios.post("http://localhost:5000/sign-in", loginData);
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-in`, loginData);
         
         promise.then(response => {
             setIsEnabled(true)

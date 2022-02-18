@@ -33,7 +33,7 @@ export default function RegistrationPage(){
             return
         }
 
-        const promise = axios.post("http://localhost:5000/sign-up", {
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/sign-up`, {
             name: registrationData.name,
             email: registrationData.email,
             password: registrationData.password

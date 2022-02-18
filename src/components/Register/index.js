@@ -32,7 +32,7 @@ export default function Register(){
 
         registrationData.value = parseFloat(registrationData.value).toFixed(2);
 
-        const promise = axios.post(`http://localhost:5000/register/${registryType}`, registrationData, config);
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/register/${registryType}`, registrationData, config);
         
         promise.then(response => {
             setIsEnabled(true)
